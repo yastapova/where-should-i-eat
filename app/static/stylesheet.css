@@ -1,0 +1,11 @@
+body {
+    background-color: #EDFFFC;
+    font-family: Verdana, Geneva, sans-serif;
+    margin:0;
+}
+
+#heading {
+    padding: 5px;
+    background-color: #9FBCCD;
+    padding: 20px;
+}
