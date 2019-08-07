@@ -1,11 +1,107 @@
 body {
-    background-color: #EDFFFC;
+    background-color: cornsilk;
     font-family: Verdana, Geneva, sans-serif;
     margin:0;
 }
 
 #heading {
     padding: 5px;
-    background-color: #9FBCCD;
+    background-color: midnightblue;
     padding: 20px;
+    color: cornsilk;
+    border-bottom: solid 15px skyblue;
+}
+
+#intro {
+    background: lightslategray;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    font-size: 15px;
+    border-bottom: solid 10px midnightblue;
+}
+
+svg {
+    border: solid 10px midnightblue;
+    border-radius: 20px;
+    margin: -10px 0 10px 0;
+}
+
+svg text {
+    font-size: 11px;
+}
+
+/* Links */
+
+path.link {
+    fill: none;
+    stroke: skyblue;
+    stroke-width: 1px;
+}
+
+path.link.highlight {
+    stroke-width: 3px;
+}
+
+path.link.selected {
+    stroke: midnightblue;
+    stroke-width: 3px;
+}
+
+/* Inner Nodes */
+
+.inner_node > rect {
+    fill: skyblue;
+}
+
+.inner_node > rect.highlight {
+    fill: skyblue;
+    stroke: midnightblue;
+    stroke-width: 2px;
+}
+
+.inner_node > rect.selected {
+    fill: midnightblue;
+}
+
+.inner_node > text {
+    fill: black;
+}
+
+.inner_node > text.highlight  {
+    fill: black;
+    font-weight: bold;
+}
+
+.inner_node > text.selected {
+    fill: white;
+    font-weight: bold;
+}
+
+/* Outer Nodes */
+
+.outer_node > circle {
+    fill: skyblue;
+}
+
+.outer_node > circle.highlight  {
+    fill: skyblue;
+}
+
+.outer_node > circle.selected {
+    fill: midnightblue;
+}
+
+.outer_node > text {
+    fill: black;
+}
+
+.outer_node > text.highlight  {
+    fill: black;
+    font-weight: bold;
+}
+
+.outer_node > text.selected {
+    fill: black;
+    font-weight: bold;
 }
