@@ -5,12 +5,28 @@ body {
 }
 
 #heading {
+    border-bottom: solid 15px skyblue;
+}
+
+#results_heading {
+    display: none;
+    border-top: solid 15px skyblue;
+}
+
+.heading {
     padding: 5px;
     background-color: midnightblue;
     color: cornsilk;
-    border-bottom: solid 15px skyblue;
     font-family:"Fugaz One", Verdana, Geneva, sans-serif;
     font-size: 1.5em;
+}
+
+.heading h1 {
+    font-size: 1.5em;
+}
+
+.heading h2 {
+    font-size: 1.0em;
 }
 
 #intro {

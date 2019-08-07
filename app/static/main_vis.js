@@ -266,4 +266,25 @@ function clear_selection() {
 
 $(document).ready(function() {
     $("#clear_selection").on("click", clear_selection);
+
+    $("#search_cuisine").on("click", function() {
+        $.ajax({
+            type: "POST",
+            url: "/search_cuisine",
+            data: {
+                "categories" : JSON.stringify(selected_cuisines),
+                "location" : ""
+            },
+            success: function(response) {
+                $("#search_results").html(response);
+                $("#results_heading").show();
+
+                var element_to_scroll_to = document.getElementById("results");
+                element_to_scroll_to.scrollIntoView();
+            },
+            error: function(xhr) {
+                console.log(xhr);
+            }
+        });
+    });
 });

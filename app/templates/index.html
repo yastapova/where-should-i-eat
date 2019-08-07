@@ -12,8 +12,8 @@
 </head>
 <body>
 <div align="center">
-    <div id="heading">
-<!--        <img id="logo" src="{{ url_for('static', filename='logo.png') }}" />--><h1>Where Should I Eat?</h1>
+    <div id="heading" class="heading">
+        <h1>Where Should I Eat?</h1>
     </div>
     <div id="container">
         <div id="intro">
@@ -29,7 +29,13 @@
             <button id="clear_selection">Clear</button>
             <button id="search_cuisine">Search</button>
         </div>
-        {% block content %}{% endblock %}
+        <div id="results">
+            <div id="results_heading" class="heading">
+                <h2>Results</h2>
+            </div>
+            <div id="search_results"></div>
+        </div>
+
     </div>
 </div>
 </body>
