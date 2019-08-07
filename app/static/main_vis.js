@@ -6,7 +6,7 @@ var dishes_file = "/static/data/test_links.csv";
 
 var cuisine_id_map = {};
 var total_dishes_n = 0;
-var selected_cuisines = [];
+selected_cuisines = [];
 
 cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
     for(var i = 0; i < cuisine_data.length; i++) {
@@ -255,4 +255,15 @@ cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
         }
 
     });
+});
+
+function clear_selection() {
+    d3.selectAll(".selected").classed("selected", false);
+    selected_cuisines = [];
+
+    $("#search_cuisine").attr("disabled", true);
+}
+
+$(document).ready(function() {
+    $("#clear_selection").on("click", clear_selection);
 });

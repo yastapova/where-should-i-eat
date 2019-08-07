@@ -1,5 +1,5 @@
 body {
-    background-color: cornsilk;
+    background-color: #f0f2f4;
     font-family: Verdana, Geneva, sans-serif;
     margin:0;
 }
@@ -7,9 +7,10 @@ body {
 #heading {
     padding: 5px;
     background-color: midnightblue;
-    padding: 20px;
     color: cornsilk;
     border-bottom: solid 15px skyblue;
+    font-family:"Fugaz One", Verdana, Geneva, sans-serif;
+    font-size: 1.5em;
 }
 
 #intro {
@@ -17,18 +18,55 @@ body {
     color: white;
     padding: 10px;
     margin: 0;
-    font-size: 15px;
+    font-size: 1.1em;
     border-bottom: solid 10px midnightblue;
+}
+
+#controls {
+    background: lightslategray;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 1.1em;
+    border-top: solid midnightblue 10px;
+    margin-top: -3px;
 }
 
 svg {
     border: solid 10px midnightblue;
     border-radius: 20px;
-    margin: -10px 0 10px 0;
+    margin: -10px 0 -10px 0;
+    background: cornsilk;
 }
 
 svg text {
     font-size: 11px;
+}
+
+button {
+    font-size: 1.5em;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    margin: 0 10px;
+    background: lightskyblue;
+    cursor: pointer;
+    border: solid ivory 2px;
+    padding: 15px 30px;
+    border-radius: 20px;
+    color: ivory;
+    text-shadow: midnightblue 3px 3px;
+    box-shadow: darkslategrey 5px 5px;
+}
+
+button:hover {
+    background: #85c7f0;
+    cursor: pointer;
+    border: solid ivory 2px;
+    padding: 15px 30px;
+    border-radius: 20px;
+    color: ivory;
+    text-shadow: midnightblue 2px 2px;
+    box-shadow: darkslategrey 3px 3px;
 }
 
 /* Links */
