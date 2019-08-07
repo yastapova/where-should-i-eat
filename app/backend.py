@@ -1,8 +1,11 @@
 import http.client
 import json
 import urllib
+import os
 
-from .keys import YELP_API_KEY
+YELP_API_KEY = os.environ["YELP_API_KEY"]
+
+# from .keys import YELP_API_KEY
 
 api_url = "api.yelp.com"
 search_cuisine = "/v3/businesses/search?"
