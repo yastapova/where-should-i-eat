@@ -1,13 +1,19 @@
+// Visualization inspired by this concept map: http://www.findtheconversation.com/concept-map/#
+// and based on code by Dustin Spicuzza: http://bl.ocks.org/virtuald/ea7438cb8c6913196d8e
+// Heavily edited by Yuliya Astapova to conform to D3.js version 5
+
+
 var width = 1000;
 var height = 800;
 
-var cuisines_file = "/static/data/test_cuisines.csv";
-var dishes_file = "/static/data/test_links.csv";
+var cuisines_file = "/static/data/cuisines.csv";
+var dishes_file = "/static/data/links.csv";
 
 var cuisine_id_map = {};
 var total_dishes_n = 0;
 selected_cuisines = [];
 
+// This loads the entire visualization
 cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
     for(var i = 0; i < cuisine_data.length; i++) {
         var cus_i = cuisine_data[i];
@@ -90,7 +96,7 @@ cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
         var chart_height = height / 2
         var outer_y = d3.scaleLinear()
             .domain([0, Math.ceil(total_dishes_n / 2)])
-            .range([-chart_height + 50, chart_height + 50]);
+            .range([-chart_height + 25, chart_height]);
 
 
         // setup positioning
@@ -232,6 +238,7 @@ cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
             }
 
             selected_cuisines.push(d.id);
+            $("#search_cuisine").attr("disabled", false);
 
             return;
         }
@@ -251,11 +258,19 @@ cuisines_temp = d3.csv(cuisines_file).then(function(cuisine_data) {
 
             selected_cuisines.splice(selected_cuisines.indexOf(d.id), 1);
 
+            if(selected_cuisines.length < 1) {
+                $("#search_cuisine").attr("disabled", true);
+            }
+
             return;
         }
 
     });
 });
+
+coords = []
+
+// functions for buttons
 
 function clear_selection() {
     d3.selectAll(".selected").classed("selected", false);
@@ -264,27 +279,42 @@ function clear_selection() {
     $("#search_cuisine").attr("disabled", true);
 }
 
+function search_by_cuisine() {
+    if(coords.length < 2) {
+        alert("Could not retrieve geolocation. Defaulting to New York, NY.")
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/search_cuisine",
+        data: {
+            "categories" : JSON.stringify(selected_cuisines),
+            "location" : "New York, NY",
+            "coords" : JSON.stringify(coords)
+        },
+        success: function(response) {
+            $("#search_results").html(response);
+            $("#results_heading").show();
+
+            var element_to_scroll_to = document.getElementById("results");
+            element_to_scroll_to.scrollIntoView();
+        },
+        error: function(xhr) {
+            console.log(xhr);
+        }
+    });
+}
+
+// assign onclicks to buttons
+
 $(document).ready(function() {
     $("#clear_selection").on("click", clear_selection);
 
-    $("#search_cuisine").on("click", function() {
-        $.ajax({
-            type: "POST",
-            url: "/search_cuisine",
-            data: {
-                "categories" : JSON.stringify(selected_cuisines),
-                "location" : ""
-            },
-            success: function(response) {
-                $("#search_results").html(response);
-                $("#results_heading").show();
+    $("#search_cuisine").on("click", search_by_cuisine);
 
-                var element_to_scroll_to = document.getElementById("results");
-                element_to_scroll_to.scrollIntoView();
-            },
-            error: function(xhr) {
-                console.log(xhr);
-            }
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            coords = [position.coords.latitude, position.coords.longitude];
         });
-    });
+    }
 });

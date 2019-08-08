@@ -14,22 +14,27 @@ headers = {
 }
 
 
-def search_cuisine_yelp(categories, location):
+def search_cuisine_yelp(categories, coords, location):
     if location is None or location == "":
         location = "New York, NY"
 
-    data = query_yelp(categories, location)
+    categories = ",".join(categories)
+    params = {"categories": categories}
+
+    if len(coords) > 0:
+        params["latitude"] = coords[0]
+        params["longitude"] = coords[1]
+    else:
+        params["location"] = location
+
+    data = query_yelp(params)
     data = data["businesses"]
     data = process_results(data)
 
     return data
 
 
-def query_yelp(categories, location):
-    # categories.append("restaurants")
-    categories = ",".join(categories)
-    params = {"categories": categories, "location": location}
-
+def query_yelp(params):
     param_string = urllib.parse.urlencode(params)
     full_url = search_cuisine + param_string
 
