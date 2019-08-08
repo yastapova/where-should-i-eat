@@ -280,8 +280,10 @@ function clear_selection() {
 }
 
 function search_by_cuisine() {
-    if(coords.length < 2) {
-        alert("Could not retrieve geolocation. Defaulting to New York, NY.")
+    loc = $("#location_box").val();
+
+    if(loc === "") {
+        loc = "New York, NY";
     }
 
     $.ajax({
@@ -289,7 +291,7 @@ function search_by_cuisine() {
         url: "/search_cuisine",
         data: {
             "categories" : JSON.stringify(selected_cuisines),
-            "location" : "New York, NY",
+            "location" : loc,
             "coords" : JSON.stringify(coords)
         },
         success: function(response) {
@@ -315,6 +317,11 @@ $(document).ready(function() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             coords = [position.coords.latitude, position.coords.longitude];
+            $("#coords_message").text("Using geolocation instead of text location.");
+        }, function(error) {
+            $("#coords_message").text("Could not retrieve geolocation. Please enter your location below.");
         });
+    } else {
+        $("#coords_message").text("Could not retrieve geolocation. Please enter your location below.");
     }
 });
