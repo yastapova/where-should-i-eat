@@ -5,3 +5,6 @@
         <p>Stars: {{ b["rating"] }}, Reviews: {{ b["review_count"] }}</p>
     </div>
 {% endfor %}
+{% if businesses|length < 1 %}
+    <p>Sorry, no search results to display! Try expanding your search.</p>
+{% endif %}

@@ -120,7 +120,7 @@ path.link.selected {
 
 .inner_node > rect.highlight {
     fill: skyblue;
-    stroke: midnightblue;
+    stroke: coral;
     stroke-width: 2px;
 }
 
@@ -149,7 +149,7 @@ path.link.selected {
 }
 
 .outer_node > circle.highlight  {
-    fill: skyblue;
+    fill: coral;
 }
 
 .outer_node > circle.selected {
@@ -161,7 +161,7 @@ path.link.selected {
 }
 
 .outer_node > text.highlight  {
-    fill: black;
+    fill: coral;
     font-weight: bold;
 }
 
